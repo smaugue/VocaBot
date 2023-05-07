@@ -1,0 +1,75 @@
+import os
+import subprocess
+
+dependencies = ['discord', 'asyncio', 'discord.ext', 'datetime']
+
+installed = []
+for dependency in dependencies:
+    try:
+        __import__(dependency)
+        installed.append(dependency)
+        print(f'{dependency} is already installed')
+    except ImportError:
+        pass
+
+not_installed = set(dependencies) - set(installed)
+if not_installed:
+    print('Installing missing dependencies')
+    for dependency in not_installed:
+        subprocess.check_call(['pip', 'install', dependency])
+    print('All dependencies are now installed')
+else:
+    print('All dependencies are already installed')
+
+
+os.system("cls||clear")
+
+def start():
+    str = input("""
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+@    ________________________________________________________________________________________________________   @
+@                                                                                                               @
+@    #####  ###### #      ###### #    # ######      #      #      #    # ##   # ###### #    # ###### #####      @
+@    #    # #      #      #    # #    # #    #     # #     #      #    # # #  # #      #    # #      #    #     @
+@    #####  ####   #      #    # #    # #         #   #    #      #    # #  # # #      ###### ####   #####      @
+@    #    # #      #      #    # #    # #   ###  #######   #      #    # #   ## #      #    # #      #    #     @
+@    #####  #####  ###### ###### ###### ######  #       #  ###### ###### #    # ###### #    # ###### #     #    @
+@    ________________________________________________________________________________________________________   @
+@                                                                                   By Smaugue#9833             @
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+=========================================================
+|    Bienvenu dans le BelougaLuncher.                   |
+|    Voulez vous lancer le bot?                         |
+=========================================================
+
+[yes(y)/no(n)]: => """)
+    if str == "y":
+        try:
+            Lunche(Bot = "VocaBot")
+        except Exception as errors:
+            print(f"Une erreur est survenue:{errors}")
+        start()
+    else: start()
+
+def Lunche(Bot):
+    Luncher = open("Luncher.dll", "w")
+    print("")
+    Luncher.write(Bot)
+    Luncher.close()
+    try:
+        os.system(f"python {Bot}.bot")
+        if NameError:
+            print(" Il semblerai que le bot ne fonctionne pas.")
+            start()
+    except Exception as errors:
+        print(f"Une erreur est survenue:{errors}")
+        start()
+
+restart = open("Luncher.dll", "r")
+botinfo = restart.readline()
+
+if "," in botinfo:
+    Bot, y = botinfo.split(",")
+    Lunche(Bot)
+else: start()
